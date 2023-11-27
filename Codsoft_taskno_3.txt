@@ -1,0 +1,27 @@
+import tkinter as Tk
+import random
+import string
+
+def generate_password():
+    password_length = int(entry_length.get())
+    if password_length > 0:
+        password = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=password_length))
+        label_password.config(text=f"Generated Password: {password}")
+    else:
+        label_password.config(text="Please enter a valid password length.")
+
+root = Tk.Tk()
+root.title("Random Password Generator")
+root.configure(bg='cyan')
+root.geometry("500x400")
+
+entry_length = Tk.Entry(root, width=30, borderwidth=3)
+entry_length.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+
+button_generate = Tk.Button(root, text="Generate Password", padx=40, pady=20, command=generate_password, bg='pink')
+button_generate.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+
+label_password = Tk.Label(root, text="Generated Password: ", font=('Arial', 12, 'normal'), foreground='black')
+label_password.grid(row=2, column=0, columnspan=2, pady=5)
+
+root.mainloop()
